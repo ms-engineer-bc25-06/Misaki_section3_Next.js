@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-//import { useNavigate } from 'react-router-dom';
-//import type { Transaction } from '../../types/Transaction';
 
 const TransactionForm: React.FC = () => {
   const [formData, setFormData] = useState({

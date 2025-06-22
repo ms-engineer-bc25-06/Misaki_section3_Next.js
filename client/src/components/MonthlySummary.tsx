@@ -7,7 +7,7 @@ import { Transaction } from '../types/Transaction';
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const MonthlySummary: React.FC = () => {
-  const { data: transactions, error } = useSWR<Transaction[]>('http://localhost:3002/transactions', fetcher);
+  const { data: transactions, error } = useSWR<Transaction[]>('http://localhost:3001/transactions', fetcher);
 
 if (error) return <div>エラーが発生しました。</div>;
 if (!transactions) return <div>読み込み中...</div>;
@@ -82,7 +82,7 @@ const filteredTransactions = useMemo(() => {
       <table>
         <thead>
           <tr>
-            <th>月</th>
+            <th>日付</th>
             <th>入金合計</th>
             <th>出金合計</th>
             <th>差額</th>

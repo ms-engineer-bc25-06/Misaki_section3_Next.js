@@ -1,17 +1,18 @@
-# Node.js lts image
+# Node.js LTSイメージを指定
 FROM node:lts
 
-# ワーキングディレクトリを指定
+# 作業ディレクトリ設定
 WORKDIR /usr/src/app
 
-# 同一ディレクトリ内のファイルを全てコピー
-COPY . .
+# まず package.json と package-lock.json だけコピー（npm install効率化のため）
+COPY package*.json ./
 
-# パッケージをインストール
+# 依存関係をインストール（devDependenciesも含む）
 RUN npm install
 
-# 3000番ポートでリッスン
-EXPOSE 3000
+# ソースコードをコピー
+COPY . .
 
-# React の起動
+# Next.jsの開発モードで起動（3000番ポート解放）
+EXPOSE 3000
 CMD ["npm", "run", "dev"]

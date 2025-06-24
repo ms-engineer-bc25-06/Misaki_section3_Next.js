@@ -14,21 +14,15 @@ export default function Home() {
   if (!transactions) return <div>読み込み中...</div>
 
   return (
-    <main className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md">
-      <h1 className="text-2xl font-bold mb-4">家計簿アプリ</h1>
+   <main className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md">
+  <h1 className="text-2xl font-bold mb-4">家計簿アプリ</h1>
 
-       <MonthlySummary />
+  <MonthlySummary />
 
-      <Link href="/add" className="text-blue-500 underline block mb-4">
-      <FancyButton href="/add">新規登録</FancyButton>
-      </Link>
-      <Link href="/list" className="text-blue-500 underline block mb-2">
-      <FancyButton href="/list">入出金一覧</FancyButton>
-      </Link>
+  <FancyButton href="/add">新規登録</FancyButton>
+  <FancyButton href="/list">入出金一覧</FancyButton>
+</main>
 
-
-     
-    </main>
   )
 }
 

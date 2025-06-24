@@ -15,7 +15,7 @@ const TransactionList: React.FC = () => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const res = await fetch('http://localhost:4000/transactions');
+        const res = await fetch('http://localhost:4000/api/transactions');
         const data: Transaction[] = await res.json();
         setTransactions(data);
       } catch (error) {

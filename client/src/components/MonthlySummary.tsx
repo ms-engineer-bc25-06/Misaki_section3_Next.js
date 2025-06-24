@@ -7,7 +7,7 @@ import { Transaction } from '../types/Transaction';
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const MonthlySummary: React.FC = () => {
-  const { data: transactions, error } = useSWR<Transaction[]>('http://localhost:3001/transactions', fetcher);
+  const { data: transactions, error } = useSWR<Transaction[]>('http://localhost:4000/api/transactions', fetcher);
 
 if (error) return <div>エラーが発生しました。</div>;
 if (!transactions) return <div>読み込み中...</div>;

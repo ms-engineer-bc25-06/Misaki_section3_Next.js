@@ -30,7 +30,7 @@ const TransactionDetail = () => {
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/transactions/${id}`);
+        const res = await fetch(`http://localhost:4000/api/transactions/${id}`);
         if (!res.ok) throw new Error('取得失敗');
         const data = await res.json();
         setTransaction(data);
@@ -64,7 +64,7 @@ const TransactionDetail = () => {
     if (!window.confirm('削除しますか？')) return;
 
     try {
-      await fetch(`http://localhost:3001/transactions/${transaction.id}`, {
+      await fetch(`http://localhost:4000/api/transactions/${transaction.id}`, {
         method: 'DELETE',
       });
       alert('削除しました');
@@ -79,7 +79,7 @@ const TransactionDetail = () => {
     if (!transaction) return;
 
     try {
-      const res = await fetch(`http://localhost:3001/transactions/${transaction.id}`, {
+      const res = await fetch(`http://localhost:4000/api/transactions/${transaction.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

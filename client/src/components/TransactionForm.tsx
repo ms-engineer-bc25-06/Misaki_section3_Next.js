@@ -8,7 +8,7 @@ const TransactionForm: React.FC = () => {
     date: '',
     type: 'income',
     category: '',
-    amount: 0,
+    amount: '',
     memo: ''
   });
 
@@ -34,7 +34,7 @@ const TransactionForm: React.FC = () => {
       if (!res.ok) throw new Error('登録に失敗しました');
 
       alert('登録が完了しました！');
-      router.push('/'); // 一覧に戻すなど
+      router.push('/list'); // 一覧に戻すなど
     } catch (err) {
       console.error(err);
       alert('エラーが発生しました');

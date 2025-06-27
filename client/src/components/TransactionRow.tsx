@@ -6,22 +6,27 @@ type Props = {
   transaction: Transaction;
 };
 
-const TransactionRow: React.FC<Props> = ({ transaction }) => (
-  <tr>
-    <td className="border px-4 py-2">{transaction.date}</td>
-    <td className="border px-4 py-2">
-      <Link href={`/detail/${transaction.id}`} className="text-blue-600 underline">
-        [{transaction.type === 'income' ? '収入' : '支出'}] {transaction.category}
-      </Link>
-    </td>
-    <td
-      className={`border px-4 py-2 ${
-        transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
-      }`}
-    >
-      {transaction.amount.toLocaleString()} 円
-    </td>
-  </tr>
-);
+const TransactionRow: React.FC<Props> = ({ transaction }) => {
+  // Dateオブジェクトにして、日本語形式に変換
+  const formattedDate = new Date(transaction.date).toLocaleDateString('ja-JP');
+
+  return (
+    <tr>
+      <td className="border px-4 py-2">{formattedDate}</td>
+      <td className="border px-4 py-2">
+        <Link href={`/detail/${transaction.id}`} className="text-blue-600 underline">
+          [{transaction.type === 'income' ? '収入' : '支出'}] {transaction.category}
+        </Link>
+      </td>
+      <td
+        className={`border px-4 py-2 ${
+          transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+        }`}
+      >
+        {transaction.amount.toLocaleString()} 円
+      </td>
+    </tr>
+  );
+};
 
 export default TransactionRow;

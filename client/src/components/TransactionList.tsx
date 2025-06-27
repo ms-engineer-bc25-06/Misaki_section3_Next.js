@@ -7,6 +7,7 @@ import TransactionRow from '@/components/TransactionRow';
 
 
 
+
 const TransactionList: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);

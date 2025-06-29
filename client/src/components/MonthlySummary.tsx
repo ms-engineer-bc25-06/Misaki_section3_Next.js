@@ -27,11 +27,16 @@ const filteredTransactions = useMemo(() => {
   const summaryData = useMemo(() => {
     const summaryMap: Record<string, { income: number; expense: number }> = {};
 
+    if (!Array.isArray(filteredTransactions)) {
+    console.warn('filteredTransactions is not an array:', filteredTransactions);
+    return { summaryMap: {}, months: [] };
+  }
+
     filteredTransactions.forEach(t => {
       const month = t.date.slice(0, 7);
       if (!summaryMap[month]) summaryMap[month] = { income: 0, expense: 0 };
-      if (t.type === 'income') summaryMap[month].income += t.amount;
-      else summaryMap[month].expense += t.amount;
+      if (t.type === '収入') summaryMap[month].income += t.amount;
+     else summaryMap[month].expense += t.amount;
     });
 
     const months = Object.keys(summaryMap).sort();
@@ -42,9 +47,10 @@ const filteredTransactions = useMemo(() => {
 
   // 利用可能な年度を取得
   const availableYears = useMemo(() => {
+    if (!Array.isArray(transactions)) return [];
     const years = new Set(transactions.map(t => t.date.slice(0, 4)));
     return Array.from(years).sort();
-  }, []);
+  }, [transactions]);
 
   return (
     <div>
@@ -79,13 +85,13 @@ const filteredTransactions = useMemo(() => {
         </label>
       </div>
       
-      <table>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
-          <tr>
-            <th>日付</th>
-            <th>入金合計</th>
-            <th>出金合計</th>
-            <th>差額</th>
+         <tr>
+          <th style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>日付</th>
+          <th style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>入金合計</th>
+          <th style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>出金合計</th>
+          <th style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>差額</th>
           </tr>
         </thead>
         <tbody>

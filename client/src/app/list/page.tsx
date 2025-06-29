@@ -7,7 +7,7 @@ import type { Transaction } from '@/types/Transaction';
 const TransactionList: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
-  const [filter, setFilter] = useState<'all' | 'income' | 'expense'>('all');
+  const [filter, setFilter] = useState<'all' | '収入' | '支出'>('all');
   const [loading, setLoading] = useState(false);
 
   // データ取得
@@ -43,7 +43,7 @@ const TransactionList: React.FC = () => {
       <select
         className="border p-1 rounded mb-4"
         value={filter}
-        onChange={(e) => setFilter(e.target.value as 'all' | 'income' | 'expense')}
+        onChange={(e) => setFilter(e.target.value as 'all' | '収入' | '支出')}
       >
         <option value="all">すべて</option>
         <option value="income">収入</option>
@@ -58,7 +58,7 @@ const TransactionList: React.FC = () => {
             <li key={t.id} className="p-2 border rounded hover:bg-gray-100">
               <Link href={`/detail/${t.id}`}>
                 <span className="text-blue-600 underline">
-                  {t.date} - {t.category} - {t.amount.toLocaleString()}円（{t.type === 'income' ? '収入' : '支出'}）
+                {new Date(t.date).toLocaleDateString('ja-JP')} - {t.category} - {t.amount.toLocaleString()}円（{t.type}）
                 </span>
               </Link>
             </li>

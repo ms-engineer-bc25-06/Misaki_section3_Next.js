@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation';
 const TransactionForm: React.FC = () => {
   const [formData, setFormData] = useState({
     date: '',
-    type: 'income',
+    type: '収入',
     category: '',
     amount: '',
-    memo: ''
+    note: ''
   });
 
    const router = useRouter();
@@ -84,7 +84,7 @@ const TransactionForm: React.FC = () => {
           name="memo"
           type="text"
           placeholder="メモ"
-          value={formData.memo}
+          value={formData.note}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />

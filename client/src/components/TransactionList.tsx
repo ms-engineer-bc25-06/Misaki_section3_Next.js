@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import type { Transaction } from '@/types/Transaction';
+import type { Transaction,TransactionType } from '@/types/Transaction';
 import TransactionRow from '@/components/TransactionRow';
 
 
@@ -11,7 +11,7 @@ import TransactionRow from '@/components/TransactionRow';
 const TransactionList: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
-  const [filter, setFilter] = useState<'all' | 'income' | 'expense'>('all');
+  const [filter, setFilter] = useState<'all' | TransactionType>('all');
   const [loading, setLoading] = useState(false);
 
   // データ取得
@@ -47,7 +47,7 @@ const TransactionList: React.FC = () => {
       <select
         className="border p-1 rounded mb-4"
         value={filter}
-        onChange={(e) => setFilter(e.target.value as 'all' | 'income' | 'expense')}
+        onChange={(e) => setFilter(e.target.value as 'all' | TransactionType)}
       >
         <option value="all">すべて</option>
         <option value="income">収入</option>

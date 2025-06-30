@@ -6,7 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 type Transaction = {
   id: number;
   date: string;
-  type: 'income' | 'expense';
+  type: '収入' | '支出';
   category: string;
   amount: number;
   memo?: string;
@@ -21,7 +21,7 @@ const TransactionDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState<Omit<Transaction, 'id'>>({
     date: '',
-    type: 'income',
+    type: '収入',
     category: '',
     amount: 0,
     memo: '',
@@ -103,8 +103,8 @@ const TransactionDetail = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input name="date" value={formData.date} onChange={handleChange} type="date" className="w-full p-2 border rounded" />
           <select name="type" value={formData.type} onChange={handleChange} className="w-full p-2 border rounded">
-            <option value="income">収入</option>
-            <option value="expense">支出</option>
+            <option value="収入">収入</option>
+            <option value="支出">支出</option>
           </select>
           <input name="category" value={formData.category} onChange={handleChange} placeholder="カテゴリ" className="w-full p-2 border rounded" />
           <input name="amount" value={formData.amount} onChange={handleChange} type="number" placeholder="金額" className="w-full p-2 border rounded" />
@@ -117,10 +117,11 @@ const TransactionDetail = () => {
       ) : (
         <div>
           <p><strong>日付:</strong> {transaction.date}</p>
-          <p><strong>タイプ:</strong> {transaction.type === 'income' ? '収入' : '支出'}</p>
+          <p><strong>タイプ:</strong> { transaction.type}</p>
           <p><strong>カテゴリ:</strong> {transaction.category}</p>
           <p><strong>金額:</strong> {transaction.amount.toLocaleString()} 円</p>
           {transaction.memo && <p><strong>メモ:</strong> {transaction.memo}</p>}
+          
           <button onClick={() => setIsEditing(true)} className="mt-4 px-4 py-2 bg-yellow-400 rounded">編集</button>
           <button onClick={handleDelete} className="ml-2 px-4 py-2 bg-red-500 text-white rounded">削除</button>
         </div>

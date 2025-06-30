@@ -8,5 +8,5 @@ export interface Transaction {
   type: TransactionType;
   category: string;
   amount: number;
-  memo?: string | null;
+  note?: string | null;
 }

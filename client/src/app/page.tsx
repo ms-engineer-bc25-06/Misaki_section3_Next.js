@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function Home() {
   const { data: transactions, error } = useSWR(
     "http://localhost:4000/api/transactions",
-    fetcher
+    fetcher,
   );
 
   if (error) return <div>読み込みエラーが発生しました</div>;

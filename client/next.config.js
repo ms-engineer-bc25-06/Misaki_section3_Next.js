@@ -5,9 +5,9 @@ const nextConfig = {
   // 例：リライトを正しく書く場合
   rewrites: async () => [
     {
-      source: '/api/:path*',
-      destination: 'http://localhost:4000/api/:path*'
-    }
+      source: "/api/:path*",
+      destination: "http://localhost:4000/api/:path*",
+    },
   ],
 
   // 実験的な設定は必要なければ削除

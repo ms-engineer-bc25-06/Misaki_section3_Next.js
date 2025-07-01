@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const MonthlySummary: React.FC = () => {
   const { data: transactions, error } = useSWR<Transaction[]>(
     "http://localhost:4000/api/transactions",
-    fetcher
+    fetcher,
   );
 
   const [selectedYear, setSelectedYear] = useState<string>("all");

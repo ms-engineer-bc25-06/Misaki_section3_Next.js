@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "next/link";
-import type { Transaction } from "@/types/Transaction";
+import React from 'react';
+import Link from 'next/link';
+import type { Transaction } from '@/types/Transaction';
 
 type Props = {
   transaction: Transaction;
@@ -23,7 +23,7 @@ const TransactionRow: React.FC<Props> = ({ transaction }) => {
       </td>
       <td
         className={`border px-4 py-2 ${
-          transaction.type === "収入" ? "text-green-600" : "text-red-600"
+          transaction.type === '収入' ? 'text-green-600' : 'text-red-600'
         }`}
       >
         {transaction.amount.toLocaleString()} 円

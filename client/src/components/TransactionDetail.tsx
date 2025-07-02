@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 
 type Transaction = {
   id: number;
   date: string;
-  type: "収入" | "支出";
+  type: '収入' | '支出';
   category: string;
   amount: number;
   memo?: string;
@@ -19,19 +19,19 @@ const TransactionDetail = () => {
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Omit<Transaction, "id">>({
-    date: "",
-    type: "収入",
-    category: "",
+  const [formData, setFormData] = useState<Omit<Transaction, 'id'>>({
+    date: '',
+    type: '収入',
+    category: '',
     amount: 0,
-    memo: "",
+    memo: '',
   });
 
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
         const res = await fetch(`http://localhost:4000/api/transactions/${id}`);
-        if (!res.ok) throw new Error("取得失敗");
+        if (!res.ok) throw new Error('取得失敗');
         const data = await res.json();
         setTransaction(data);
         setFormData({
@@ -39,7 +39,7 @@ const TransactionDetail = () => {
           type: data.type,
           category: data.category,
           amount: data.amount,
-          memo: data.memo || "",
+          memo: data.memo || '',
         });
       } catch (e) {
         console.error(e);
@@ -57,22 +57,22 @@ const TransactionDetail = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "amount" ? Number(value) : value,
+      [name]: name === 'amount' ? Number(value) : value,
     }));
   };
 
   const handleDelete = async () => {
     if (!transaction) return;
-    if (!window.confirm("削除しますか？")) return;
+    if (!window.confirm('削除しますか？')) return;
 
     try {
       await fetch(`http://localhost:4000/api/transactions/${transaction.id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
-      alert("削除しました");
-      router.push("/list");
+      alert('削除しました');
+      router.push('/list');
     } catch {
-      alert("削除に失敗しました");
+      alert('削除に失敗しました');
     }
   };
 
@@ -84,17 +84,17 @@ const TransactionDetail = () => {
       const res = await fetch(
         `http://localhost:4000/api/transactions/${transaction.id}`,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         },
       );
       const updated = await res.json();
       setTransaction(updated);
       setIsEditing(false);
-      alert("更新しました");
+      alert('更新しました');
     } catch {
-      alert("更新に失敗しました");
+      alert('更新に失敗しました');
     }
   };
 

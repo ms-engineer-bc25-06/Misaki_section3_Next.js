@@ -1,6 +1,6 @@
 //型の定義
 
-export type TransactionType = "収入" | "支出";
+export type TransactionType = '収入' | '支出';
 
 export interface Transaction {
   id: number;

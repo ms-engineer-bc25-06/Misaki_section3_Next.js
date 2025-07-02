@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import useSWR from "swr";
-import MonthlySummary from "@/components/MonthlySummary";
-import FancyButton from "@/components/FancyButton";
+import useSWR from 'swr';
+import MonthlySummary from '@/components/MonthlySummary';
+import FancyButton from '@/components/FancyButton';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Home() {
   const { data: transactions, error } = useSWR(
-    "http://localhost:4000/api/transactions",
+    'http://localhost:4000/api/transactions',
     fetcher,
   );
 

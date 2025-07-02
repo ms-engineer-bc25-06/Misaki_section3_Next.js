@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const TransactionForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    date: "",
-    type: "収入",
-    category: "",
-    amount: "",
-    note: "",
+    date: '',
+    type: '収入',
+    category: '',
+    amount: '',
+    note: '',
   });
 
   const router = useRouter();
@@ -20,26 +20,26 @@ const TransactionForm: React.FC = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "amount" ? Number(value) : value,
+      [name]: name === 'amount' ? Number(value) : value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/api/transactions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('http://localhost:4000/api/transactions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error("登録に失敗しました");
+      if (!res.ok) throw new Error('登録に失敗しました');
 
-      alert("登録が完了しました！");
-      router.push("/list"); // 一覧に戻すなど
+      alert('登録が完了しました！');
+      router.push('/list'); // 一覧に戻すなど
     } catch (err) {
       console.error(err);
-      alert("エラーが発生しました");
+      alert('エラーが発生しました');
     }
   };
 

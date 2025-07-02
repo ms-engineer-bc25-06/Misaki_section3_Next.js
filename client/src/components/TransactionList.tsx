@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import type { Transaction, TransactionType } from "@/types/Transaction";
-import TransactionRow from "@/components/TransactionRow";
+import React, { useState, useEffect } from 'react';
+import type { Transaction, TransactionType } from '@/types/Transaction';
+import TransactionRow from '@/components/TransactionRow';
 
 const TransactionList: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<
     Transaction[]
   >([]);
-  const [filter, setFilter] = useState<"all" | TransactionType>("all");
+  const [filter, setFilter] = useState<'all' | TransactionType>('all');
   const [loading, setLoading] = useState(false);
 
   // データ取得
@@ -17,11 +17,11 @@ const TransactionList: React.FC = () => {
     const fetchTransactions = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:4000/api/transactions");
+        const res = await fetch('http://localhost:4000/api/transactions');
         const data: Transaction[] = await res.json();
         setTransactions(data);
       } catch (error) {
-        console.error("データ取得エラー:", error);
+        console.error('データ取得エラー:', error);
       } finally {
         setLoading(false);
       }
@@ -32,7 +32,7 @@ const TransactionList: React.FC = () => {
   // フィルタリング処理
   useEffect(() => {
     const filtered = transactions.filter((transaction) => {
-      if (filter === "all") return true;
+      if (filter === 'all') return true;
       return transaction.type === filter;
     });
     setFilteredTransactions(filtered);
@@ -45,7 +45,7 @@ const TransactionList: React.FC = () => {
       <select
         className="border p-1 rounded mb-4"
         value={filter}
-        onChange={(e) => setFilter(e.target.value as "all" | TransactionType)}
+        onChange={(e) => setFilter(e.target.value as 'all' | TransactionType)}
       >
         <option value="all">すべて</option>
         <option value="income">収入</option>
